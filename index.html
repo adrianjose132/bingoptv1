@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Bingo PTV</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Modal Preview -->
+  <div id="modal" role="dialog" aria-modal="true" hidden>
+    <button type="button" class="modal-close" aria-label="Cerrar">&times;</button>
+    <img id="modalImg" src="" alt="Vista previa cartón" />
+  </div>
+
+  <!-- Admin icon + badge -->
+  <button id="adminIcon" class="icon-btn" aria-label="Administración">
+    ⚙<span id="adminBadge" class="badge" aria-hidden="true"></span>
+  </button>
+  <aside id="adminPanel" class="panel" aria-hidden="true">
+    <h3>Admin Login</h3>
+    <form id="adminLoginForm">
+      <label for="adminPass">Contraseña de administrador</label>
+      <input type="password" id="adminPass" required />
+      <button type="submit">Entrar</button>
+    </form>
+
+    <div id="adminContent" hidden>
+      <h3>Configuración</h3>
+      <form id="configForm">
+        <label for="cfgFechaSorteo">Fecha del sorteo</label>
+        <input type="datetime-local" id="cfgFechaSorteo" required />
+
+        <label for="cfgPrecio">Precio (Bs)</label>
+        <input type="number" id="cfgPrecio" min="1" value="5" required />
+
+        <label for="cfgRango">Cartones máx (1–500)</label>
+        <input type="number" id="cfgRango" min="1" max="500" value="500" required />
+
+        <label for="cfgWhats">WhatsApp Admin</label>
+        <input type="tel" id="cfgWhats" placeholder="+584XXXXXXXXX" required />
+
+        <button type="submit">Guardar</button>
+        <button type="button" id="resetSorteo" class="danger">♻ Resetear sorteo</button>
+        <button type="button" id="viewCompras" class="info">👥 Ver Participantes</button>
+      </form>
+
+      <hr />
+      <h3>Compras <span id="pendientesBadge"></span></h3>
+      <label for="searchCompras">Buscar participantes</label>
+      <input type="search" id="searchCompras" placeholder="Nombre, teléfono, cartón..." />
+      <div id="adminCompras" class="scrollable"></div>
+
+      <div class="summary">
+        <p><strong>Total cartones:</strong> <span id="totalVendidos">0</span></p>
+        <p><strong>Total recaudado:</strong> Bs <span id="totalRecaudado">0.00</span></p>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Usuario steps -->
+  <main>
+    <section id="step1" class="container">
+      <h2>Bienvenido al Bingo PTV</h2>
+      <p id="displayFechaSorteo" aria-live="polite"></p>
+      <form id="userForm">
+        <label for="nombre">Nombre</label>
+        <input id="nombre" required />
+
+        <label for="apellido">Apellido</label>
+        <input id="apellido" required />
+
+        <label for="telefono">Teléfono (7–15 dígitos)</label>
+        <input id="telefono" type="tel" pattern="\d{7,15}" required />
+
+        <button type="submit" id="btnStep1" disabled>Siguiente</button>
+      </form>
+    </section>
+
+    <section id="step2" class="container" hidden>
+      <h3>Selecciona tus cartones (máx 18)</h3>
+      <div class="carton-grid" id="grid" role="grid"></div>
+      <div class="summary">Seleccionados: <span id="cnt">0</span></div>
+      <button id="btnConfirm" disabled>Confirmar</button>
+    </section>
+
+    <section id="step3" class="container" hidden>
+      <h3>Pago</h3>
+      <div id="timer" aria-live="assertive">20:00</div>
+      <div class="summary" id="resumen"></div>
+      <div class="summary">
+        <strong>Datos de Pago Móvil:</strong><br />
+        Titular: [Titular]<br />Banco: [Banco]<br />Tel: [Número]
+      </div>
+      <form id="paymentForm">
+        <label for="referencia">Referencia del pago</label>
+        <input id="referencia" required />
+        <button type="submit">Enviar pago</button>
+      </form>
+    </section>
+
+    <section id="step4" class="container" hidden>
+      <h3>¡Gracias!</h3>
+      <p>Tu solicitud ha sido enviada y está siendo procesada.</p>
+    </section>
+  </main>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+body {
+  font-family: 'Segoe UI', Roboto, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f9f9f9;
+  color: #333;
+}
+.container {
+  max-width: 650px;
+  margin: 20px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+/* Resto de tu CSS original */
+.icon-btn {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  font-size: 26px;
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+.badge {
+  background: #d32f2f;
+  color: #fff;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 0.8em;
+  vertical-align: top;
+  margin-left: 4px;
+}
+.panel {
+  display: none;
+  position: fixed;
+  top: 50px;
+  right: 20px;
+  width: 360px;
+  max-height: 80vh;
+  overflow-y: auto;
+  background: #fff;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  z-index: 1001;
+}
+/* Añade el resto de reglas según tu original */
